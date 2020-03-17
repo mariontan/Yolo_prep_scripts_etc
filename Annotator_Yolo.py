@@ -21,7 +21,7 @@ SIZE = 256,256
 
 class LabelTool():
     def __init__(self, master):
-        self.imgclass = 0
+        self.imgclass = 3
 
 
         # set up the main frame
@@ -164,7 +164,7 @@ class LabelTool():
         # load image
         imagepath = self.imageList[self.cur - 1]
         self.img = Image.open(imagepath)
-        self.img = self.img.resize((256,256), Image.ANTIALIAS)
+        #self.img = self.img.resize((256,256), Image.ANTIALIAS)
         self.tkimg = ImageTk.PhotoImage(self.img)
         #print(self.tkimg.width() if self.tkimg.width()>1000 else 1000)
         self.mainPanel.config(width = max(self.tkimg.width(), 400), height = max(self.tkimg.height(), 400))
