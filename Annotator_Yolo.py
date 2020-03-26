@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Spyder Editor
-
-This is a temporary script file.
-"""
-
 # https://github.com/puzzledqs/BBox-Label-Tool
 from __future__ import division
 from tkinter import *
@@ -17,7 +10,7 @@ import random
 # colors for the bboxes
 COLORS = ['red', 'blue', 'yellow', 'pink', 'cyan', 'green', 'black']
 # image sizes for the examples
-SIZE = 256,256
+SIZE = 256, 256
 
 class LabelTool():
     def __init__(self, master):
@@ -36,7 +29,7 @@ class LabelTool():
         self.imageList= []
         self.egDir = ''
         self.egList = []
-        self.outDir = './'
+        self.outDir = ''
         self.cur = 0
         self.total = 0
         self.category = 0
@@ -125,7 +118,6 @@ class LabelTool():
     def loadDir(self, dbg = False):
 
         self.imageDir = os.path.join('./forboxing', str(self.imgclass))
-        #self.imageDir =r'D:\Ivan\Test_data\Stanford_AI_cars_modified_Yolo\train\forboxing\buses'
         print(self.imageDir)
         self.imageList = glob.glob(os.path.join(self.imageDir, '*.jpg'))
         self.imageList = sorted(self.imageList)
@@ -138,7 +130,7 @@ class LabelTool():
         self.total = len(self.imageList)
 
          # set up output dir
-        self.outDir = os.path.join('newlabels', str(self.imgclass))
+        self.outDir = os.path.join('./newlabels', str(self.imgclass))
         if not os.path.exists(self.outDir):
             os.mkdir(self.outDir)
 
@@ -164,9 +156,7 @@ class LabelTool():
         # load image
         imagepath = self.imageList[self.cur - 1]
         self.img = Image.open(imagepath)
-        #self.img = self.img.resize((256,256), Image.ANTIALIAS)
         self.tkimg = ImageTk.PhotoImage(self.img)
-        #print(self.tkimg.width() if self.tkimg.width()>1000 else 1000)
         self.mainPanel.config(width = max(self.tkimg.width(), 400), height = max(self.tkimg.height(), 400))
         self.mainPanel.create_image(0, 0, image = self.tkimg, anchor=NW)
         self.progLabel.config(text = "%04d/%04d" %(self.cur, self.total))
