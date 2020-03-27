@@ -12,9 +12,11 @@ COLORS = ['red', 'blue', 'yellow', 'pink', 'cyan', 'green', 'black']
 # image sizes for the examples
 SIZE = 256, 256
 
+#change self.imageDir and self.outDir anf self.imgclass
+
 class LabelTool():
     def __init__(self, master):
-        self.imgclass = 3
+        self.imgclass = 1
 
 
         # set up the main frame
@@ -117,7 +119,8 @@ class LabelTool():
 
     def loadDir(self, dbg = False):
 
-        self.imageDir = os.path.join('./forboxing', str(self.imgclass))
+        #self.imageDir = os.path.join('./forboxing', str(self.imgclass))
+        self.imageDir = os.path.join('D:/Ivan/Test_data/Yolo_test_data_organized/train', str(self.imgclass))
         print(self.imageDir)
         self.imageList = glob.glob(os.path.join(self.imageDir, '*.jpg'))
         self.imageList = sorted(self.imageList)
@@ -130,7 +133,8 @@ class LabelTool():
         self.total = len(self.imageList)
 
          # set up output dir
-        self.outDir = os.path.join('./newlabels', str(self.imgclass))
+        #self.outDir = os.path.join('./newlabels', str(self.imgclass))
+        self.outDir = os.path.join('D:/Ivan/Test_data/Yolo_test_data_organized/newlabels', str(self.imgclass))
         if not os.path.exists(self.outDir):
             os.mkdir(self.outDir)
 
@@ -155,6 +159,7 @@ class LabelTool():
     def loadImage(self):
         # load image
         imagepath = self.imageList[self.cur - 1]
+        print(imagepath)
         self.img = Image.open(imagepath)
         self.tkimg = ImageTk.PhotoImage(self.img)
         self.mainPanel.config(width = max(self.tkimg.width(), 400), height = max(self.tkimg.height(), 400))
