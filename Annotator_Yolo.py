@@ -16,7 +16,7 @@ SIZE = 256, 256
 
 class LabelTool():
     def __init__(self, master):
-        self.imgclass = 1
+        self.imgclass = 0
 
 
         # set up the main frame
@@ -120,7 +120,7 @@ class LabelTool():
     def loadDir(self, dbg = False):
 
         #self.imageDir = os.path.join('./forboxing', str(self.imgclass))
-        self.imageDir = os.path.join('D:/Ivan/Test_data/Yolo_test_data_organized/train', str(self.imgclass))
+        self.imageDir = os.path.join('D:/Ivan/Test_data/IvanMadeDataSet/Yolo_Cars_Front_SlightSide_View/train', str(self.imgclass))
         print(self.imageDir)
         self.imageList = glob.glob(os.path.join(self.imageDir, '*.jpg'))
         self.imageList = sorted(self.imageList)
@@ -134,7 +134,7 @@ class LabelTool():
 
          # set up output dir
         #self.outDir = os.path.join('./newlabels', str(self.imgclass))
-        self.outDir = os.path.join('D:/Ivan/Test_data/Yolo_test_data_organized/newlabels', str(self.imgclass))
+        self.outDir = os.path.join('D:/Ivan/Test_data/IvanMadeDataSet/Yolo_Cars_Front_SlightSide_View/newlabels', str(self.imgclass))
         if not os.path.exists(self.outDir):
             os.mkdir(self.outDir)
 
@@ -167,7 +167,9 @@ class LabelTool():
         self.progLabel.config(text = "%04d/%04d" %(self.cur, self.total))
         imgw = self.img.size[0]
         imgh = self.img.size[1]        
-
+        
+#        print('width',imgw)
+#        print('height',imgh)
         # load labels
         self.clearBBox()
         self.imagename = os.path.split(imagepath)[-1].split('.')[0]
