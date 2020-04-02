@@ -60,11 +60,11 @@ class LabelTool():
         # ----------------- GUI stuff ---------------------
         # dir entry & load
         self.label = Label(self.frame, text = "Image Dir:")
-        self.label.grid(row = 0, column = 0, sticky = E)
+        self.label.grid(row = 1, column = 0, sticky = E)
         self.entry = Entry(self.frame)
-        self.entry.grid(row = 0, column = 1, sticky = W+E)
+        self.entry.grid(row = 1, column = 1, sticky = W+E)
         self.ldBtn = Button(self.frame, text = "Load", command = self.loadDir)
-        self.ldBtn.grid(row = 0, column = 2, sticky = W+E)
+        self.ldBtn.grid(row = 1, column = 2, sticky = W+E)
 
         # main panel for labeling
         self.mainPanel = Canvas(self.frame, cursor='tcross')
@@ -78,19 +78,19 @@ class LabelTool():
 
         # showing bbox info & delete bbox
         self.lb1 = Label(self.frame, text = 'Bounding boxes:')
-        self.lb1.grid(row = 1, column = 2,  sticky = W+N)
+        self.lb1.grid(row = 2, column = 2,  sticky = W+N)
         self.listbox = Listbox(self.frame, width = 22, height = 12)
-        self.listbox.grid(row = 2, column = 2, sticky = N)
-        self.btnDel = Button(self.frame, text = 'Delete', command = self.delBBox)
-        self.btnDel.grid(row = 3, column = 2, sticky = W+E+N)
+        self.listbox.grid(row = 3, column = 2, sticky = N)
+        self.btnDel = Button(self.frame, text = 'Save List', command = self.saveList)
+        self.btnDel.grid(row = 4, column = 2, sticky = W+E+N)
         self.btnClear = Button(self.frame, text = 'ClearAll', command = self.clearBBox)
-        self.btnClear.grid(row = 4, column = 2, sticky = W+E+N)
-        self.saveListBtn = Button(self.frame, text = 'Save List', command = self.saveList)
-        self.saveListBtn.grid(row = 5, column = 2, sticky = W+E+N)
+        self.btnClear.grid(row = 5, column = 2, sticky = W+E+N)
+        self.saveListBtn = Button(self.frame, text = 'Delete', command = self.delBBox)
+        self.saveListBtn.grid(row = 6, column = 2, sticky = W+E+N)
 
         # control panel for image navigation
         self.ctrPanel = Frame(self.frame)
-        self.ctrPanel.grid(row = 6, column = 1, columnspan = 2, sticky = W+E)
+        self.ctrPanel.grid(row = 0, column = 1, columnspan = 2, sticky = W+E)
         self.prevBtn = Button(self.ctrPanel, text='<< Prev', width = 10, command = self.prevImage)
         self.prevBtn.pack(side = LEFT, padx = 5, pady = 3)
         self.nextBtn = Button(self.ctrPanel, text='Next >>', width = 10, command = self.nextImage)
@@ -107,10 +107,10 @@ class LabelTool():
         self.frontBtn.pack(side = LEFT)
         self.rearBtn = Button(self.ctrPanel, text = 'Rear', command = self.rearImage)
         self.rearBtn.pack(side = LEFT)
-        self.rightBtn = Button(self.ctrPanel, text = 'Right', command = self.rightImage)
-        self.rightBtn.pack(side = LEFT)
         self.leftBtn = Button(self.ctrPanel, text = 'Left', command = self.leftImage)
         self.leftBtn.pack(side = LEFT)
+        self.rightBtn = Button(self.ctrPanel, text = 'Right', command = self.rightImage)
+        self.rightBtn.pack(side = LEFT)
         self.unknownBtn = Button(self.ctrPanel, text = r'???', command = self.unknownImage)
         self.unknownBtn.pack(side = LEFT)
 
