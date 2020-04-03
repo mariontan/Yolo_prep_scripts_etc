@@ -7,6 +7,8 @@ import os
 import glob
 import random
 import pandas as pd
+import sortPics
+import atexit
 
 # colors for the bboxes
 COLORS = ['red', 'blue', 'yellow', 'pink', 'cyan', 'green', 'black']
@@ -17,7 +19,7 @@ SIZE = 256, 256
 
 class LabelTool():
     def __init__(self, master):
-        self.imgclass = 0
+        self.imgclass = 1
 
 
         # set up the main frame
@@ -81,12 +83,12 @@ class LabelTool():
         self.lb1.grid(row = 2, column = 2,  sticky = W+N)
         self.listbox = Listbox(self.frame, width = 22, height = 12)
         self.listbox.grid(row = 3, column = 2, sticky = N)
-        self.btnDel = Button(self.frame, text = 'Save List', command = self.saveList)
-        self.btnDel.grid(row = 4, column = 2, sticky = W+E+N)
-        self.btnClear = Button(self.frame, text = 'ClearAll', command = self.clearBBox)
-        self.btnClear.grid(row = 5, column = 2, sticky = W+E+N)
-        self.saveListBtn = Button(self.frame, text = 'Delete', command = self.delBBox)
-        self.saveListBtn.grid(row = 6, column = 2, sticky = W+E+N)
+#        self.saveListBtn = Button(self.frame, text = 'Save List', command = self.saveList)
+#        self.saveListBtn.grid(row = 4, column = 2, sticky = W+E+N)
+#        self.btnClear = Button(self.frame, text = 'ClearAll', command = self.clearBBox)
+#        self.btnClear.grid(row = 5, column = 2, sticky = W+E+N)
+#        self.delBtn = Button(self.frame, text = 'Delete', command = self.delBBox)
+#        self.delBtn.grid(row = 6, column = 2, sticky = W+E+N)
 
         # control panel for image navigation
         self.ctrPanel = Frame(self.frame)
@@ -113,6 +115,11 @@ class LabelTool():
         self.rightBtn.pack(side = LEFT)
         self.unknownBtn = Button(self.ctrPanel, text = r'???', command = self.unknownImage)
         self.unknownBtn.pack(side = LEFT)
+        self.btnClear = Button(self.ctrPanel, text = 'ClearAll', command = self.clearBBox)
+        self.btnClear.pack(side = LEFT)
+        self.saveListBtn = Button(self.ctrPanel, text = 'Save List', command = self.saveList)
+        self.saveListBtn.pack(side = LEFT)
+
 
         # example pannel for illustration
         self.egPanel = Frame(self.frame, border = 10)
@@ -308,6 +315,7 @@ class LabelTool():
             df = pd.Series(lst[0])
             df.to_csv(name[i]+'.txt')
             i+=1
+        sortPics.sortPics()
         
     def frontImage(self, event = None):
         self.saveImage()
@@ -361,3 +369,4 @@ if __name__ == '__main__':
     tool = LabelTool(root)
     root.resizable(width =  True, height = True)
     root.mainloop()
+#    atexit.register(LabelTool.saveList)    
