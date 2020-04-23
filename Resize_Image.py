@@ -10,7 +10,7 @@ from PIL import Image
 import os, sys
 from shutil import copyfile
 
-path = r"D:/Ivan/Test_data/IvanMadeDataSet/Yolo_Cars_Front_SlightSide_View/train/0/"
+path = r"D:\Ivan\Test_data\IvanMadeDataSet\LANZ_front_view_truck\front view truck/"
 #path = r"D:/Ivan/Test_data/IvanMadeDataSet/Stanford_AI_cars_modified/test/buses/"
 dirs = os.listdir( path )
 if not os.path.exists(path+'heicPics'):

@@ -7,7 +7,7 @@ Created on Tue Mar 31 13:39:34 2020
 
 import os
 
-path = r'D:/Ivan/Developer/OIDv4_ToolKit-master/OID/Dataset/train/Car'
+path = r'D:/Ivan/Developer/OIDv4_ToolKit-master/OID/Dataset/train/Truck'
 path_YoloLabel = path + '/Yolov3Label'
 files = os.listdir(path)
 
